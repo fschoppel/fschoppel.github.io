@@ -102,6 +102,10 @@ function addScore(){
         alert("Player score cannot be below 0!");
         return;
     }
+    if(isNaN(parseInt(addscore))){
+        alert("Please enter a valid number!");
+        return;
+    }
     ScorePlayer.addToScore(addscore);
     GlobalCnt++;
     if(nextPlayer(GlobalCnt) == 0){
