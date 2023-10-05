@@ -7,6 +7,15 @@
 #results{
     display: none;
 }
+#showResultsButton{
+    display: none;
+}
 #hideResultsButton{
     display: none;
+}
+#nextRoundButton{
+    display: none;
+} 
+.buttonDivider{
+    margin: 20px;
 }

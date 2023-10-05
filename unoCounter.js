@@ -21,37 +21,25 @@ var GlobalCnt = 0;
 //create a array of players
 var players = [];
 
-function addPlayer(){
-     // Get the form element by its ID
-     var formElement = document.getElementById("nameForm");
-
-     // Get the input field element by its name
-     var inputElement = formElement.elements["fname"];
- 
-     // Get the value entered by the user
-     var name = inputElement.value;
-
-     if(checkIfPlayerExists(name)){
-         alert("Player already exists");
-         return;
-     }
-
-    var player = new Player(name);
-    players.push(player);
-
-}
 
 function newAddPlayer(){
     var name = document.getElementById("playerNameAdder").value;
     if(checkIfPlayerExists(name)){
-        alert("Player already exists");
+        alert("Player " + name +" already exists!");
         return;
     }
     var player = new Player(name);
     players.push(player);
+    document.getElementById("playerNameAdder").value = "";
 }
 function hideAddPlayer(){
+    if(players.length == 0){
+        alert("Please add atleast one player!");
+        return;
+    }
     document.getElementById("addPlayers").style.display = "none";
+    document.getElementById("nextRoundButton").style.display = "block";
+    document.getElementById("showResultsButton").style.display = "block";
 }
 
 function checkIfPlayerExists(name){
@@ -65,7 +53,7 @@ function checkIfPlayerExists(name){
 
 function nextPlayer(cnt){
     if(cnt == players.length){
-        alert("no more players");
+        alert("score added for all players");
         GlobalCnt = 0;
         document.getElementById("round").style.display = "none";
         document.getElementById("scoreAdderName").innerHTML = "NIL";
@@ -79,18 +67,25 @@ function nextPlayer(cnt){
 function addNewRound(){
     document.getElementById("round").style.display = "block";
     ScorePlayer = nextPlayer(GlobalCnt);
-    document.getElementById("scoreAdderName").innerHTML = ScorePlayer.getName();
+    document.getElementById("scoreInput").value = "";
+    document.getElementById("scoreAdderName").innerHTML = "Adding Score for: " + ScorePlayer.getName();
 }
 
 function addScore(){
     addscore = document.getElementById("scoreInput").value;
     //alert(addscore);
+    //check if player score is not below 0
+    if(ScorePlayer.getScore() + parseInt(addscore) < 0){
+        alert("Player score cannot be below 0!");
+        return;
+    }
     ScorePlayer.addToScore(addscore);
     GlobalCnt++;
     if(nextPlayer(GlobalCnt) == 0){
         return 0;}
     ScorePlayer = nextPlayer(GlobalCnt);
-    document.getElementById("scoreAdderName").innerHTML = ScorePlayer.getName();
+    document.getElementById("scoreAdderName").innerHTML = "Adding Score for: " + ScorePlayer.getName();
+    document.getElementById("scoreInput").value = "";
 }
 
 
