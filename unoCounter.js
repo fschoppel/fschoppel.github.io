@@ -21,6 +21,22 @@ var GlobalCnt = 0;
 //create a array of players
 var players = [];
 
+//input VARs:
+var addPlayerInput = document.getElementById("playerNameAdder");
+var addScoreInput = document.getElementById("scoreInput");
+
+//eventListener:
+addPlayerInput.addEventListener ("keydown", function(event) {
+    if (event.key === "Enter") {
+        document.getElementById("addPlayerButton").click();
+    }
+});
+addScoreInput.addEventListener ("keydown", function(event) {
+    if (event.key === "Enter") {
+        addScore();
+    }
+});
+
 
 function newAddPlayer(){
     var name = document.getElementById("playerNameAdder").value;
@@ -28,9 +44,15 @@ function newAddPlayer(){
         alert("Player " + name +" already exists!");
         return;
     }
+    if(name == ""){
+        alert("Please enter a name!");
+        return;
+    }
     var player = new Player(name);
     players.push(player);
     document.getElementById("playerNameAdder").value = "";
+    document.getElementById("currentPlayersHeading").innerHTML = "Current Players: ";
+    document.getElementById("currentPlayers").innerHTML += "<li>" + name + "</li>";
 }
 function hideAddPlayer(){
     if(players.length == 0){
@@ -40,6 +62,7 @@ function hideAddPlayer(){
     document.getElementById("addPlayers").style.display = "none";
     document.getElementById("nextRoundButton").style.display = "block";
     document.getElementById("showResultsButton").style.display = "block";
+    alert(players.length + " players added successfully!");
 }
 
 function checkIfPlayerExists(name){
@@ -96,7 +119,7 @@ function showResults(){
     document.getElementById("hideResultsButton").style.display = "block";
     var text = "";
     for(var i = 0; i < players.length; i++){
-        text += players[i].getName() + ", " + players[i].getScore() + " Points" +"<br>";
+        text += players[i].getName() + ": " + players[i].getScore() + " Points" +"<br>";
     }
     document.getElementById("results").style.display = "block";
     document.getElementById("results").innerHTML = text; 
@@ -107,3 +130,4 @@ function hideResults(){
 
     document.getElementById("results").style.display = "none";
 }
+

@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>UnoCounter</title>
-        <script src="unoCounter.js"></script>
         <link rel="stylesheet" href="unoCounter.css">
     </head>
     <body>
@@ -12,8 +11,11 @@
         <!--Adding Players-->
         <div id="addPlayers">
             Player-Name: <input type="text" id="playerNameAdder" value="">
-            <button type="button" onclick="newAddPlayer()">Add Player</button>
+            <button type="button" id="addPlayerButton" onclick="newAddPlayer()">Add Player</button>
             <button type="button" onclick="hideAddPlayer()">Finish</button>
+            <div id="currentPlayers">
+                <p id="currentPlayersHeading">No Players added yet</p>
+            </div>
         </div>
 
         <!--Adding a new round-->
@@ -34,6 +36,9 @@
         <div id="results">
             NIL
         </div>
+
+        <script src="unoCounter.js"></script>
+
 
           
 
