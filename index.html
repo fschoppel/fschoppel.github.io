@@ -1,1 +1,42 @@
-Hello World
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <title>UnoCounter</title>
+        <script src="unoCounter.js"></script>
+        <link rel="stylesheet" href="unoCounter.css">
+    </head>
+    <body>
+        <h1>UnoCounter</h1>
+
+        <!--Adding Players-->
+        <div id="addPlayers">
+            Player-Name: <input type="text" id="playerNameAdder" value="">
+            <button type="button" onclick="newAddPlayer()">Add Player</button>
+            <button type="button" onclick="hideAddPlayer()">Finish</button>
+        </div>
+
+        <!--Adding a new round-->
+        <div class="buttonDivider">
+            <button type="button" onclick="addNewRound()" id="nextRoundButton">Add new round</button>
+        </div>
+        <div id="round">
+            <p id="scoreAdderName">NIL</p>
+            Adding: <input type="number" id="scoreInput" value="0">
+            <button type="button" onclick="addScore()">Add</button>
+        </div>
+
+        <!--Results-->
+        <div class="buttonDivider">
+            <button type="button" id="showResultsButton" onclick="showResults()">Show Results</button>
+            <button type="button" id="hideResultsButton" onclick="hideResults()">Hide Results</button>
+        </div>
+        <div id="results">
+            NIL
+        </div>
+
+          
+
+    </body>
+
+</html>

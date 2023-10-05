@@ -1,0 +1,12 @@
+#addPlayers{
+    display: block;
+}
+#round{
+    display: none;
+}
+#results{
+    display: none;
+}
+#hideResultsButton{
+    display: none;
+}
