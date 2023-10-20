@@ -36,6 +36,13 @@ addScoreInput.addEventListener ("keydown", function(event) {
         addScore();
     }
 });
+window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = 'It looks like you have been editing something. '
+                            + 'If you leave before saving, your changes will be lost.';
+
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+});
 
 
 function newAddPlayer(){
@@ -51,7 +58,7 @@ function newAddPlayer(){
     var player = new Player(name);
     players.push(player);
     document.getElementById("playerNameAdder").value = "";
-    document.getElementById("currentPlayersHeading").innerHTML = "Current Players: ";
+    document.getElementById("currentPlayersHeading").innerHTML = "Players: ";
     document.getElementById("currentPlayers").innerHTML += "<li>" + name + "</li>";
 }
 function hideAddPlayer(){
@@ -91,7 +98,7 @@ function addNewRound(){
     document.getElementById("round").style.display = "block";
     ScorePlayer = nextPlayer(GlobalCnt);
     document.getElementById("scoreInput").value = "";
-    document.getElementById("scoreAdderName").innerHTML = "Adding Score for: " + ScorePlayer.getName();
+    document.getElementById("scoreAdderName").innerHTML = "Player: " + ScorePlayer.getName();
 }
 
 function addScore(){
