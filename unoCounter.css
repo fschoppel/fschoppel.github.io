@@ -86,6 +86,7 @@
         font-size: 18px;
     }
     #round{
+        display: none;
         text-align: center;
         color: white;
         border-top: #fadf0f solid 2px;
@@ -133,29 +134,10 @@
         font-size: 16px;
     }
     #results{
+        display: none;
         text-align: center;
         color: white;
     }
-
-
-    /*initial element-hiding:*/
-    #round{
-        display: none;
-    }
-    #results{
-        display: none;
-    }
-    #showResultsButton{
-        display: none;
-    }
-    #hideResultsButton{
-        display: none;
-    }
-
-    /*Player Input*/
-
-
-    
 }
     
 
