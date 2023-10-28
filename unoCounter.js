@@ -13,10 +13,23 @@ class Player{
         this.score = this.score + parseInt(amount);
     }
 }
+class Game{
+    constructor(){
+        this.players = [];
+        this.roundsPlayed = 0;
+        this.highestRoundScore = 0;
+    }
+}
 
 //GLOBAL VARIABLES:
 var ScorePlayer;
 var GlobalCnt = 0;
+var RoundsPlayed = 0;
+var HighestRoundScore = 0;
+var HighestRoundPlayer = "NIL";
+
+//GLOBAL FLAGS
+var addingNewRoundFlag = false;
 
 //create a array of players
 var players = [];
@@ -36,6 +49,7 @@ addScoreInput.addEventListener ("keydown", function(event) {
         addScore();
     }
 });
+/* DISABLED FOR DEVELOPMENT PURPOSES
 window.addEventListener("beforeunload", function (e) {
     var confirmationMessage = 'It looks like you have been editing something. '
                             + 'If you leave before saving, your changes will be lost.';
@@ -43,8 +57,9 @@ window.addEventListener("beforeunload", function (e) {
     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });
+*/
 
-
+//Adding Players:
 function newAddPlayer(){
     var name = document.getElementById("playerNameAdder").value;
     if(checkIfPlayerExists(name)){
@@ -69,6 +84,7 @@ function hideAddPlayer(){
     document.getElementById("addPlayers").style.display = "none";
     document.getElementById("nextRoundButton").style.display = "block";
     document.getElementById("showResultsButton").style.display = "block";
+    document.getElementById("showLogButton").style.display = "block";
     alert(players.length + " players added successfully!");
 }
 
@@ -81,9 +97,14 @@ function checkIfPlayerExists(name){
     return false;
 }
 
+
+//Adding Scores:
 function nextPlayer(cnt){
     if(cnt == players.length){
+        refreshResults();
         alert("score added for all players");
+        RoundsPlayed++;
+        addingNewRoundFlag = false;
         GlobalCnt = 0;
         document.getElementById("round").style.display = "none";
         document.getElementById("scoreAdderName").innerHTML = "NIL";
@@ -95,6 +116,7 @@ function nextPlayer(cnt){
 }
 
 function addNewRound(){
+    addingNewRoundFlag = true;
     document.getElementById("round").style.display = "block";
     ScorePlayer = nextPlayer(GlobalCnt);
     document.getElementById("scoreInput").value = "";
@@ -109,36 +131,85 @@ function addScore(){
         alert("Player score cannot be below 0!");
         return;
     }
+    //check if input is a number
     if(isNaN(parseInt(addscore))){
         alert("Please enter a valid number!");
         return;
     }
     ScorePlayer.addToScore(addscore);
+    //check if highest round score must be replaced
+    if(addscore > HighestRoundScore){
+        HighestRoundScore = addscore;
+        HighestRoundPlayer = ScorePlayer.getName();
+    }
+    //add to log
+    logAddPoints(RoundsPlayed+1, ScorePlayer.getName(), addscore, ScorePlayer.getScore());
+
     GlobalCnt++;
     if(nextPlayer(GlobalCnt) == 0){
         return 0;}
     ScorePlayer = nextPlayer(GlobalCnt);
     document.getElementById("scoreAdderName").innerHTML = "Adding Score for: " + ScorePlayer.getName();
     document.getElementById("scoreInput").value = "";
+    refreshResults();
 }
 
 
 
-
+//Showing Results:
 function showResults(){
     document.getElementById("showResultsButton").style.display = "none";
     document.getElementById("hideResultsButton").style.display = "block";
-    var text = "";
-    for(var i = 0; i < players.length; i++){
-        text += players[i].getName() + ": " + players[i].getScore() + " Points" +"<br>";
-    }
     document.getElementById("results").style.display = "block";
-    document.getElementById("results").innerHTML = text; 
+
+    showResultsArr = players.slice();
+    showResultsArr.sort(function(a, b){return b.getScore() - a.getScore()});
+
+    var text = "";
+    for(var i = 0; i < showResultsArr.length; i++){
+        text += "<li>" + showResultsArr[i].getName() + ": " + showResultsArr[i].getScore() + " Points" +"</li>";
+    }
+    document.getElementById("results").innerHTML = text;
 }
 function hideResults(){
     document.getElementById("showResultsButton").style.display = "block";
     document.getElementById("hideResultsButton").style.display = "none";
-
     document.getElementById("results").style.display = "none";
 }
+function refreshResults(){
+    showResultsArr = players.slice();
+    showResultsArr.sort(function(a, b){return b.getScore() - a.getScore()});
+
+    var text = "";
+    for(var i = 0; i < showResultsArr.length; i++){
+        text += "<li>" + showResultsArr[i].getName() + ": " + showResultsArr[i].getScore() + " Points" +"</li>";
+    }
+    document.getElementById("results").innerHTML = text;
+}
+
+
+
+//Log:
+function addLog(round, player, AddScore, TotalScore){
+    document.getElementById("log").innerHTML += "<li>" + "Round: " + round + " | " + "Player: " + player + " | " + "Score Added: " + AddScore + " | " + "Total Score: " + TotalScore + "</li>";
+}
+function logAddPoints(round, player, AddScore, TotalScore){
+    document.getElementById("log").innerHTML += "<li>" + "R" + round + ", added " + AddScore + " points for " + player + ", total: " + TotalScore + "</li>";
+}
+function logNextRound(round){
+    document.getElementById("log").innerHTML += "<li>" + "Round " + round + "</li>";
+}
+function showLog(){
+    document.getElementById("showLogButton").style.display = "none";
+    document.getElementById("hideLogButton").style.display = "block";
+    document.getElementById("log").style.display = "block";
+}
+function hideLog(){
+    document.getElementById("showLogButton").style.display = "block";
+    document.getElementById("hideLogButton").style.display = "none";
+    document.getElementById("log").style.display = "none";
+}
+
+
+
 

@@ -13,11 +13,12 @@
         width: 100%;
         font-family: "Roboto", sans-serif;
     }
+    /*heading*/
     h1 {
         margin: 40px auto 20px auto;
         color: #fadf0f;
         text-align: center;
-        font-family: "Caveat";
+        font-family: "Cabin Condensed", sans-serif;
         font-size: 45px;
     }
 
@@ -40,10 +41,6 @@
         border: #000001 solid 2px;
         text-align: center;
         font-size: 16px;
-    }
-    #addPlayerButton:hover{
-        background-color: #e60012;
-        color: #fadf0f;
     }
     #startGameButton{
         width: 50%;
@@ -138,7 +135,51 @@
         text-align: center;
         color: white;
     }
-}
+    #results li{
+        list-style-type: none;
+        background-color: #fadf0f;
+        border: #f9462b solid 2px;
+        color: #e60012;
+    }
+
+    /*Log*/
+    #showLogButton{
+        display: none;
+        text-align: center;
+        width: 50%;
+        height: 40px;
+        margin: 20px auto 20px auto;
+        background-color: #fadf0f;
+        color: #e60012;
+        border: #000001 solid 2px;
+        font-size: 16px;
+    }
+    #hideLogButton{
+        display: none;
+        text-align: center;
+        width: 50%;
+        height: 40px;
+        margin: 20px auto 20px auto;
+        background-color: #fadf0f;
+        color: #e60012;
+        border: #000001 solid 2px;
+        font-size: 16px;
+    }
+    #log{
+        display: none;
+        text-align: left;
+        list-style-type: none;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        color: black;
+        background-color: white;
+        font-family: 'Sometype Mono', monospace;
+        font-size: 14px;
+        
+    }
+
+} /*end of mobile*/
     
 
 

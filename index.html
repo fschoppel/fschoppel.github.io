@@ -4,17 +4,20 @@
         <meta charset="UTF-8">
         <!--<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>UnoCounter</title>
+        <title>UnoScoreCounter</title>
         <link rel="stylesheet" href="unoCounter.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
-
 
         <!--Fonts-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Carter One">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin Condensed">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sometype Mono">
+
     </head>
     <body>
         <div id="wrapper">
+            <!--Heading-->
             <h1>UnoScoreCounter</h1>
         
             <!--Adding Players-->
@@ -46,8 +49,19 @@
                 <button type="button" id="hideResultsButton" onclick="hideResults()">Hide Results</button>
             </div>
             <div id="results">
-                NIL
+                
             </div>
+
+            <!--Log-->
+            <div class="buttonDivider">
+                <button type="button" id="showLogButton" onclick="showLog()">Show Log</button>
+                <button type="button" id="hideLogButton" onclick="hideLog()">Hide Log</button>
+            </div>
+            <div id="log">
+                Log:
+            </div>
+
+            
         </div> <!--End of wrapper-->
 
         <!--Scripts-->
