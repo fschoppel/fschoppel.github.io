@@ -49,7 +49,7 @@ addScoreInput.addEventListener ("keydown", function(event) {
         addScore();
     }
 });
-/* DISABLED FOR DEVELOPMENT PURPOSES
+/* DISABLED FOR DEVELOPMENT PURPOSES*/
 window.addEventListener("beforeunload", function (e) {
     var confirmationMessage = 'It looks like you have been editing something. '
                             + 'If you leave before saving, your changes will be lost.';
@@ -57,7 +57,7 @@ window.addEventListener("beforeunload", function (e) {
     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });
-*/
+
 
 //Adding Players:
 function newAddPlayer(){
