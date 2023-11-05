@@ -19,6 +19,14 @@
         <div id="wrapper">
             <!--Heading-->
             <h1>UnoScoreCounter</h1>
+
+            <div id="gameType">
+                <input type="number" id="numberOfRoundsInput" value="" placeholder="Rounds">
+                </br>
+                <button type="button" id="startRoundsButton" onclick="startRounds()">Start Rounds</button>
+                </br>
+                <button type="button" id="startEndlessButton" onclick="startEndless()">Start Endless</button>
+            </div>
         
             <!--Adding Players-->
             <div id="addPlayers">
@@ -26,17 +34,30 @@
                 </br>
                 <button type="button" id="addPlayerButton" onclick="newAddPlayer()">Add Player</button>
                 </br>
-                <button type="button" id="startGameButton" onclick="hideAddPlayer()">Start Game</button>
+                <button type="button" id="startGameButton" onclick="startGame()">Start Game</button>
                 <div id="currentPlayers">
                     <p id="currentPlayersHeading"> </p>
                 </div>
             </div>
     
-            <!--Adding a new round-->
+            <!--New Adding Round-->
+            <div id="newRound">
+                <!--<div class= NEWNewRound><span class="NEWNewRoundName">TestPlayer</span><span class="NEWNewRoundScore">345</span> <input type="number"><button type="button">Add</button></div> -->
+            </div>
             <div class="buttonDivider">
-                <button type="button" onclick="addNewRound()" id="nextRoundButton">Add Round</button>
+                <button type="button" onclick="addScores()" id="addScoresButton">Add Scores</button>
+            </div>
+
+
+            <!--Adding a new round-->
+            <div id="lastRound">
+                Last Round!
+            </div>
+            <div class="buttonDivider">
+                <button type="button" onclick="NewAddRound()" id="nextRoundButton">Add Round</button>
             </div>
             <div id="round">
+                <p id="roundNumber">Round: 0</p>
                 <p id="scoreAdderName">NIL</p>
                 Adding: <input type="number" id="scoreInput" value="0"> Points
                 </br>

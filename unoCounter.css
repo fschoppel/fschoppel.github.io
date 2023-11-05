@@ -21,10 +21,40 @@
         font-family: "Cabin Condensed", sans-serif;
         font-size: 45px;
     }
+    /*gameType*/
+    #gameType{
+        display: block;
+        text-align: center;
+    }
+    #numberOfRoundsInput{
+        width: 30%;
+        text-align: center;
+        margin: auto auto 10px auto;
+    }
+    #startRoundsButton{
+        width: 50%;
+        height: 40px;
+        margin: 0px auto 20px auto;
+        background-color: #fadf0f;
+        color: #e60012;
+        border: #000001 solid 2px;
+        text-align: center;
+        font-size: 16px;
+    }
+    #startEndlessButton{
+        width: 50%;
+        height: 40px;
+        margin: 0px auto 20px auto;
+        background-color: #fadf0f;
+        color: #e60012;
+        border: #000001 solid 2px;
+        text-align: center;
+        font-size: 16px;
+    }
 
     /*adding players*/
     #addPlayers{
-        display: block;
+        display: none;
         text-align: center;
     }
     input {
@@ -62,6 +92,90 @@
         list-style-type: none;
         color: white;
     }
+
+    /*Last Round*/
+    #lastRound{
+        display: none; 
+        text-align: center;
+        width: 50%;
+        height: 20px;
+        margin: 0px auto 10px auto;
+        background-color: #fadf0f;
+        color: #e60012;
+        font-weight: bold;
+        animation-name: lastRound;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;   
+    }
+    @keyframes lastRound {
+        0%   {color: #fadf0f;}
+        50%  {color: #e60012;}
+        100% {color: #fadf0f;}
+    }
+
+    /*new new Round*/
+    #newRound{
+        display: block;
+    }
+    .NEWNewRound{
+        background-color: #fadf0f;
+        height: 35px;
+        padding: 0px;
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .NEWNewRoundName{
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        color: #e60012;
+    }
+    .NEWNewRoundScore{
+        position: absolute;
+        right: 40%;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        color: #e60012;
+    }
+    .NEWNewRound input{
+        height: 20px;
+        width: 40px;
+        margin: auto 0px auto 0px;
+        position: absolute;
+        top: 50%;
+        right: 25%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    .NEWNewRound button{
+        height: 30px;
+        width: 15%;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        margin: auto 0px auto 0px;
+        background-color: #f9462b;
+        color: #fadf0f;
+        border: none;
+    }
+    #addScoresButton{
+        display: none;
+        text-align: center;
+        width: 50%;
+        height: 40px;
+        margin: 0px auto 20px auto;
+        background-color: #fadf0f;
+        color: #e60012;
+        border: #000001 solid 2px;
+        font-size: 16px;
+    }
+
 
 
     /*adding new round*/
