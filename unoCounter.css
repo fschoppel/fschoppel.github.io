@@ -114,6 +114,11 @@
     }
 
     /*new new Round*/
+    #roundNumber{
+        display: none;
+        text-align: center;
+        color: white;
+    }
     #newRound{
         display: block;
     }

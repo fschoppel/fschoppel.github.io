@@ -89,12 +89,9 @@ addPlayerInput.addEventListener ("keydown", function(event) {
         document.getElementById("addPlayerButton").click();
     }
 });
-addScoreInput.addEventListener ("keydown", function(event) {
-    if (event.key === "Enter") {
-        addScore();
-    }
-});
-/* DISABLED FOR DEVELOPMENT PURPOSES
+
+
+/* DISABLED FOR DEVELOPMENT PURPOSES*/
 window.addEventListener("beforeunload", function (e) {
     var confirmationMessage = 'It looks like you have been editing something. '
                             + 'If you leave before saving, your changes will be lost.';
@@ -102,7 +99,7 @@ window.addEventListener("beforeunload", function (e) {
     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });
-*/
+
 
 //Choosing Game Mode:
 function startRounds(){
@@ -171,33 +168,6 @@ function checkIfPlayerExists(name){
 }
 
 
-//Adding Scores:
-function nextPlayer(cnt){
-    if(cnt == players.length){
-        refreshResults();
-        alert("score added for all players");
-        acutalGame.increaseRoundsPlayed();
-        addingNewRoundFlag = false;
-        GlobalCnt = 0;
-        document.getElementById("round").style.display = "none";
-        document.getElementById("scoreAdderName").innerHTML = "NIL";
-
-        //check if it is last round
-        if(acutalGame.getRoundsPlayed()+1 == acutalGame.getMaxRounds()){
-            document.getElementById("lastRound").style.display = "block";
-        }
-
-        //check if game is finished
-        if(acutalGame.getRoundsPlayed() == acutalGame.getMaxRounds()){
-            finishGame();
-            return 0;
-        }
-        return 0;
-    }
-    else{
-        return players[cnt];
-    }
-}
 
 function finishGame(){
     document.getElementById("nextRoundButton").style.display = "none";
@@ -207,44 +177,6 @@ function finishGame(){
 }
 
 
-function addNewRound(){
-    addingNewRoundFlag = true;
-    document.getElementById("round").style.display = "block";
-    ScorePlayer = nextPlayer(GlobalCnt);
-    document.getElementById("roundNumber").innerHTML = "Round: " + (acutalGame.getRoundsPlayed()+1);
-    document.getElementById("scoreAdderName").innerHTML = "Player: " + ScorePlayer.getName();
-    document.getElementById("scoreInput").value = "";
-}
-
-function addScore(){
-    addscore = document.getElementById("scoreInput").value;
-    //alert(addscore);
-    //check if player score is not below 0
-    if(ScorePlayer.getScore() + parseInt(addscore) < 0){
-        alert("Player score cannot be below 0!");
-        return;
-    }
-    //check if input is a number
-    if(isNaN(parseInt(addscore))){
-        alert("Please enter a valid number!");
-        return;
-    }
-    ScorePlayer.addToScore(addscore);
-    //check if highest round score must be replaced
-    if(addscore > acutalGame.getHighestRoundScore()){
-        acutalGame.setHighestRoundScore(addscore, ScorePlayer.getName());
-    }
-    //add to log
-    logAddPoints(acutalGame.getRoundsPlayed()+1, ScorePlayer.getName(), addscore, ScorePlayer.getScore());
-
-    GlobalCnt++;
-    if(nextPlayer(GlobalCnt) == 0){
-        return 0;}
-    ScorePlayer = nextPlayer(GlobalCnt);
-    document.getElementById("scoreAdderName").innerHTML = "Adding Score for: " + ScorePlayer.getName();
-    document.getElementById("scoreInput").value = "";
-    refreshResults();
-}
 
 
 //New Add Round:
@@ -255,6 +187,11 @@ function NewAddRound() {
     document.getElementById("nextRoundButton").style.display = "none";
     document.getElementById("showResultsButton").style.display = "none";
     document.getElementById("showLogButton").style.display = "none";
+
+    //create and show RoundNumber
+    var RN = acutalGame.getRoundsPlayed()+1;
+    document.getElementById("roundNumber").innerHTML = "Round " + RN;
+    document.getElementById("roundNumber").style.display = "block";
 
     //show add Scores Button
     document.getElementById("addScoresButton").style.display = "block";
@@ -297,7 +234,7 @@ function createButtonWithHandler(player) {
 
     // Event-Handler, um die Enter-Taste abzuhören und den Button zu klicken
     input.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.keyCode === 13) {
+        if (event.key === "Enter") {
             // Überprüfen, ob die gedrückte Taste die Enter-Taste ist
             button.click(); // Button klicken
         }
@@ -343,11 +280,13 @@ function addScores() {
     for(var i = 0; i < players.length; i++){
         players[i].setScoreSetFlag(false);
     }
+    //show/hide elements
     document.getElementById("newRound").innerHTML = "";
     document.getElementById("addScoresButton").style.display = "none";
     document.getElementById("nextRoundButton").style.display = "block";
     document.getElementById("showResultsButton").style.display = "block";
     document.getElementById("showLogButton").style.display = "block";
+    document.getElementById("roundNumber").style.display = "none";
     acutalGame.increaseRoundsPlayed();
     //check if it is last round
     if(acutalGame.getRoundsPlayed()+1 == acutalGame.getMaxRounds()){
